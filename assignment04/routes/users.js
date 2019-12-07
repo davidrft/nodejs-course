@@ -6,6 +6,13 @@ const router = express.Router();
 
 const users = [];
 
-router.get('/users', (req, res, next) => {
-    res.render('users', { pageTitle: 'Users' });
+router.get('/users', (req, res) => {
+    res.render('users', { pageTitle: 'Users', users: users });
 });
+
+router.post('/users', (req, res) => {
+    users.push(req.body.name);
+    res.redirect('/users')
+});
+
+exports.routes = router;
